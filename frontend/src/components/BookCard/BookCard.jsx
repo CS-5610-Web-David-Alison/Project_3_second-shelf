@@ -57,12 +57,5 @@ BookCard.propTypes = {
     condition: PropTypes.string.isRequired,
   }).isRequired,
 };
-    _id: PropTypes.string,
-    title: PropTypes.string,
-    author: PropTypes.string,
-    price: PropTypes.number,
-    condition: PropTypes.string
-  }).isRequired
-};
 
-export default BookCard;
+

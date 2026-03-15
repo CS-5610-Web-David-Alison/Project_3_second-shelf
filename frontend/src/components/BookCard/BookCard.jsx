@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // components/BookCard/BookCard.jsx
 // Compact summary card for a single book listing.
 // Rendered as a grid item inside BookList on the Home page.
@@ -45,36 +44,12 @@ export default function BookCard({ book }) {
           View
         </Link>
       </div>
-=======
-import PropTypes from "prop-types";
-import "./BookCard.css";
-
-function BookCard({ book }) {
-  return (
-    <article className="book-card">
-      <h3>{book.title}</h3>
-
-      <p>
-        <strong>Author:</strong> {book.author}
-      </p>
-
-      <p>
-        <strong>Price:</strong> ${book.price}
-      </p>
-
-      <p>
-        <strong>Condition:</strong> {book.condition}
-      </p>
-
-      <button type="button">View Details</button>
->>>>>>> 8804c2469e0ac0d2b96aa06e113be1717223d4fd
     </article>
   );
 }
 
 BookCard.propTypes = {
   book: PropTypes.shape({
-<<<<<<< HEAD
     _id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
@@ -82,7 +57,6 @@ BookCard.propTypes = {
     condition: PropTypes.string.isRequired,
   }).isRequired,
 };
-=======
     _id: PropTypes.string,
     title: PropTypes.string,
     author: PropTypes.string,
@@ -92,4 +66,3 @@ BookCard.propTypes = {
 };
 
 export default BookCard;
->>>>>>> 8804c2469e0ac0d2b96aa06e113be1717223d4fd

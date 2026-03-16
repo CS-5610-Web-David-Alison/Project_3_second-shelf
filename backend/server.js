@@ -34,7 +34,7 @@ app.use(
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
     },
-  }),
+  })
 );
 
 // Initialize Passport
@@ -62,7 +62,7 @@ app.get("*splat", (_req, res) => {
 });
 
 // Error handler
-app.use((err, _req, res, _next) => {
+app.use((err, _req, res) => {
   console.error(err);
   res.status(500).json({ error: "Internal server error" });
 });

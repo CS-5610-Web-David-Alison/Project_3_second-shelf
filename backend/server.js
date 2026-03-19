@@ -66,15 +66,15 @@ app.get("/api", (_req, res) => {
   res.json({ message: "Second-Shelf API is running" });
 });
 
-// Serve frontend build
-app.use("/", express.static(join(__dirname, "../frontend/dist")));
+// // Serve frontend build
+// app.use("/", express.static(join(__dirname, "../frontend/dist")));
 
-// Catch-all for React Router
-app.get("*splat", (_req, res) => {
-  res.sendFile("index.html", {
-    root: join(__dirname, "../frontend/dist"),
-  });
-});
+// // Catch-all for React Router
+// app.get("*splat", (_req, res) => {
+//   res.sendFile("index.html", {
+//     root: join(__dirname, "../frontend/dist"),
+//   });
+// });
 
 // Error handler
 app.use((err, _req, res) => {

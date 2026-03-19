@@ -61,7 +61,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/books", booksRoutes);
 app.use("/api/reviews", reviewsRoutes);
 
-app.get("/api", (_req, res) => {
+app.get("/", (_req, res) => {
   res.json({ message: "Second-Shelf API is running" });
 });
 

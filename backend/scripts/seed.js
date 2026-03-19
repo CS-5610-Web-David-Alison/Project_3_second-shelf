@@ -89,7 +89,7 @@ async function seed() {
 
   await db.collection("books").insertMany(books);
 
-  console.log("Seed complete");
+  console.log("seeded completed with 1000 books and 5 users");
   await client.close();
 }
 

@@ -1,32 +1,3 @@
-/* .book-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 1rem;
-  background: white;
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.book-card h3 {
-  margin-bottom: 0.4rem;
-  color: #2c3e50;
-}
-
-.book-card button {
-  margin-top: 0.7rem;
-  padding: 0.4rem 0.7rem;
-  border: none;
-  border-radius: 5px;
-  background-color: #4a90e2;
-  color: white;
-  cursor: pointer;
-}
-
-.book-card button:hover {
-  background-color: #357abd;
-} */
-
 /* BookCard.css
    Styles for the compact book listing tile shown in the Home page grid.
    Cards stack vertically inside using flex to push the footer (price + button)

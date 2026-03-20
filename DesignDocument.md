@@ -191,6 +191,22 @@ The application follows a clear 3-Tier Architecture:
 
 ---
 
+# Design Mockups
+
+## System Architecture Wireframe
+
+![Architecture](screenshots/wireframe.png)
+
+## Frontend Layout
+
+![Frontend](screenshots/frontend-wire-1.png)
+
+![Frontend](screenshots/frontend-wire-2.png)
+
+![Frontend](screenshots/frontend-wire-3.png)
+
+---
+
 ## UI Layout
 
 The interface is divided into the following views:

@@ -67,3 +67,15 @@ export function deleteBook(id) {
     .collection(COL)
     .deleteOne({ _id: new ObjectId(id) });
 }
+
+export function searchBooks(query) {
+  return getDb()
+    .collection(COL)
+    .find({
+      $or: [
+        { title: { $regex: query, $options: "i" } },
+        { author: { $regex: query, $options: "i" } },
+      ],
+    })
+    .toArray();
+}

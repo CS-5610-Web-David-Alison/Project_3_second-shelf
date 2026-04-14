@@ -5,7 +5,7 @@ import "./BookList.css";
 
 const BOOKS_PER_PAGE = 12;
 
-export default function BookList({ books, loading, error }) {
+export default function BookList({ books, loading, error, emptyMessage }) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(books.length / BOOKS_PER_PAGE);
@@ -32,9 +32,12 @@ export default function BookList({ books, loading, error }) {
     return <p className="booklist__status booklist__status--error">{error}</p>;
   }
 
+  // if (!books.length) {
+  //   return <p className="booklist__status">No books found.</p>;
+  // }
   if (!books.length) {
-    return <p className="booklist__status">No books found.</p>;
-  }
+  return <p className="booklist__status">{emptyMessage}</p>;
+}
 
   return (
     <>
@@ -72,9 +75,11 @@ export default function BookList({ books, loading, error }) {
 BookList.propTypes = {
   books: PropTypes.arrayOf(PropTypes.object).isRequired,
   loading: PropTypes.bool.isRequired,
-  error: PropTypes.string
+  error: PropTypes.string,
+  emptyMessage: PropTypes.string,
 };
 
 BookList.defaultProps = {
-  error: ""
+  error: "",
+  emptyMessage: "No books found.",
 };

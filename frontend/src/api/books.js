@@ -87,3 +87,15 @@ export async function fetchBooksSortedByRating() {
 
   return res.json();
 }
+
+export async function searchBooks(query) {
+  const res = await fetch(`/api/books/search?q=${encodeURIComponent(query)}`);
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.error || "Failed to search books");
+  }
+
+  return data;
+}

@@ -3,7 +3,6 @@
 //Handles CRUD operations for book listings
 //Authentication is required for POST, PUT, and DELETE routes
 //All database operations are delegated to data.books.js
-
 import { Router } from "express";
 import {
   getAllBooks,
@@ -12,6 +11,7 @@ import {
   updateBook,
   deleteBook,
   getBooksBySellerId,
+  searchBooks,
 } from "../data/books.js";
 import { requireAuth } from "../middleware/auth.js";
 import { validateBook } from "../utils/validation.js";
@@ -36,6 +36,22 @@ router.get("/mine/listings", requireAuth, async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to fetch your listings" });
+  }
+});
+
+router.get("/search", async (req, res) => {
+  try {
+    const query = req.query.q?.trim();
+
+    if (!query) {
+      return res.json([]);
+    }
+
+    const books = await searchBooks(query);
+    return res.json(books);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Failed to search books" });
   }
 });
 

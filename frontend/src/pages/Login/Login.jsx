@@ -7,25 +7,28 @@ function Login({ onLogin }) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: "",
   });
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   function handleChange(event) {
     const { name, value } = event.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   }
 
   async function handleSubmit(event) {
     event.preventDefault();
     setError("");
+    setSuccess("");
 
     try {
       const data = await loginUser(formData);
       onLogin(data.user);
+      setSuccess("Login successful.");
       navigate("/");
     } catch (err) {
       setError(err.message);
@@ -60,7 +63,25 @@ function Login({ onLogin }) {
         <button type="submit">Login</button>
       </form>
 
-      {error ? <p>{error}</p> : null}
+      {success && (
+        <p
+          className="feedback-message feedback-message--success"
+          role="status"
+          aria-live="polite"
+        >
+          {success}
+        </p>
+      )}
+
+      {error && (
+        <p
+          className="feedback-message feedback-message--error"
+          role="alert"
+          aria-live="assertive"
+        >
+          {error}
+        </p>
+      )}
     </main>
   );
 }

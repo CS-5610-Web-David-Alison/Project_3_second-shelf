@@ -8,7 +8,7 @@ function Register() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password: ""
+    password: "",
   });
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
@@ -17,7 +17,7 @@ function Register() {
     const { name, value } = event.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   }
 
@@ -29,7 +29,9 @@ function Register() {
     try {
       await registerUser(formData);
       setMessage("Registration successful");
-      navigate("/login");
+      navigate("/login", {
+        state: { successMessage: "Registration successful. Please log in." },
+      });
     } catch (err) {
       setError(err.message);
     }
@@ -73,8 +75,25 @@ function Register() {
         <button type="submit">Create Account</button>
       </form>
 
-      {message ? <p>{message}</p> : null}
-      {error ? <p>{error}</p> : null}
+      {message && (
+        <p
+          className="feedback-message feedback-message--success"
+          role="status"
+          aria-live="polite"
+        >
+          {message}
+        </p>
+      )}
+
+      {error && (
+        <p
+          className="feedback-message feedback-message--error"
+          role="alert"
+          aria-live="assertive"
+        >
+          {error}
+        </p>
+      )}
     </main>
   );
 }

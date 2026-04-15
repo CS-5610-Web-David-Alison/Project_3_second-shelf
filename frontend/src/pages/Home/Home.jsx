@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import BookList from "../../components/BookList/BookList";
 import {
   fetchBooks,
@@ -16,6 +16,10 @@ function Home({ user }) {
   const [sortMode, setSortMode] = useState("default");
   const [searchTerm, setSearchTerm] = useState("");
   const [query, setQuery] = useState("");
+  const location = useLocation();
+  const [successMessage, setSuccessMessage] = useState(
+    location.state?.successMessage || "",
+  );
 
   useEffect(() => {
     loadBooks();
@@ -82,6 +86,15 @@ function Home({ user }) {
             : "Sort by Highest Rating"}
         </button>
       </div> */}
+      {successMessage && (
+  <p
+    className="feedback-message feedback-message--success"
+    role="status"
+    aria-live="polite"
+  >
+    {successMessage}
+  </p>
+)}
       {user ? (
         <div className="home-page__hero-actions">
           <Link to="/add" className="home-page__cta">

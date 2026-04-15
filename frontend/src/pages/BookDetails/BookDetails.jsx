@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router";
+import { useParams, useNavigate, Link, useLocation } from "react-router";
 import PropTypes from "prop-types";
 import { fetchBook, deleteBook } from "../../api/books.js";
 import ReviewList from "../../components/ReviewList/ReviewList.jsx";
@@ -33,6 +33,12 @@ export default function BookDetails({ user }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [reviewsError, setReviewsError] = useState(false);
+  const location = useLocation();
+  const [successMessage, setSuccessMessage] = useState(
+    location.state?.successMessage || "",
+  );
+  const [reviewFeedback, setReviewFeedback] = useState("");
+  const [reviewError, setReviewError] = useState("");
 
   useEffect(() => {
     async function loadBookDetails() {
@@ -70,59 +76,132 @@ export default function BookDetails({ user }) {
 
     try {
       await deleteBook(id);
-      navigate("/");
+      navigate("/", {
+        state: { successMessage: "Listing deleted successfully." },
+      });
     } catch (err) {
       setError(err.message || "Failed to delete book.");
     }
   }
 
-  async function handleCreateReview(data) {
-    const result = await createReviewFn(data);
+  // async function handleCreateReview(data) {
+  //   const result = await createReviewFn(data);
 
-    setReviews((prev) => [
-      {
-        _id: result.insertedId,
-        bookId: id,
-        rating: data.rating,
-        reviewText: data.reviewText,
-        userId: user.id,
-        userName: user.name,
-      },
-      ...prev,
-    ]);
+  //   setReviews((prev) => [
+  //     {
+  //       _id: result.insertedId,
+  //       bookId: id,
+  //       rating: data.rating,
+  //       reviewText: data.reviewText,
+  //       userId: user.id,
+  //       userName: user.name,
+  //     },
+  //     ...prev,
+  //   ]);
+  //   setReviewError("");
+  //   setReviewFeedback("Review submitted successfully.");
+  // }
+
+  async function handleCreateReview(data) {
+    try {
+      setReviewError(""); // clear old errors
+      const result = await createReviewFn(data);
+
+      setReviews((prev) => [
+        {
+          _id: result.insertedId,
+          bookId: id,
+          rating: data.rating,
+          reviewText: data.reviewText,
+          userId: user.id,
+          userName: user.name,
+        },
+        ...prev,
+      ]);
+
+      setReviewFeedback("Review submitted successfully.");
+    } catch (err) {
+      setReviewError(err.message || "Failed to submit review.");
+    }
   }
+
+  // async function handleUpdateReview(data) {
+  //   if (!editingReview) {
+  //     return;
+  //   }
+
+  //   await updateReviewFn(editingReview._id, {
+  //     rating: data.rating,
+  //     reviewText: data.reviewText,
+  //   });
+
+  //   setReviews((prev) =>
+  //     prev.map((review) =>
+  //       review._id === editingReview._id
+  //         ? {
+  //             ...review,
+  //             rating: data.rating,
+  //             reviewText: data.reviewText,
+  //           }
+  //         : review,
+  //     ),
+  //   );
+
+  //   setEditingReview(null);
+  // }
 
   async function handleUpdateReview(data) {
-    if (!editingReview) {
-      return;
+    try {
+      setReviewError("");
+      if (!editingReview) {
+        return;
+      }
+
+      await updateReviewFn(editingReview._id, {
+        rating: data.rating,
+        reviewText: data.reviewText,
+      });
+
+      setReviews((prev) =>
+        prev.map((review) =>
+          review._id === editingReview._id
+            ? {
+                ...review,
+                rating: data.rating,
+                reviewText: data.reviewText,
+              }
+            : review,
+        ),
+      );
+      setReviewFeedback("Review updated successfully.");
+      setEditingReview(null);
+    } catch (err) {
+      setReviewError(err.message || "Failed to update review.");
     }
-
-    await updateReviewFn(editingReview._id, {
-      rating: data.rating,
-      reviewText: data.reviewText,
-    });
-
-    setReviews((prev) =>
-      prev.map((review) =>
-        review._id === editingReview._id
-          ? {
-              ...review,
-              rating: data.rating,
-              reviewText: data.reviewText,
-            }
-          : review,
-      ),
-    );
-
-    setEditingReview(null);
   }
 
-  async function handleDeleteReview(reviewId) {
-    await deleteReviewFn(reviewId);
-    setReviews((prev) => prev.filter((review) => review._id !== reviewId));
+  // async function handleDeleteReview(reviewId) {
+  //   await deleteReviewFn(reviewId);
+  //   setReviews((prev) => prev.filter((review) => review._id !== reviewId));
 
-    if (editingReview && editingReview._id === reviewId) {
-      setEditingReview(null);
+  //   if (editingReview && editingReview._id === reviewId) {
+  //     setEditingReview(null);
+  //   }
+  // }
+
+  async function handleDeleteReview(reviewId) {
+    try {
+      setReviewError("");
+
+      await deleteReviewFn(reviewId);
+      setReviews((prev) => prev.filter((review) => review._id !== reviewId));
+
+      if (editingReview && editingReview._id === reviewId) {
+        setEditingReview(null);
+      }
+      setReviewFeedback("Review deleted successfully.");
+    } catch (err) {
+      setReviewError(err.message || "Failed to delete review.");
     }
   }
 
@@ -161,6 +240,16 @@ export default function BookDetails({ user }) {
       <Link to="/" className="bookdetails__back">
         ← Back to listings
       </Link>
+
+      {successMessage && (
+        <p
+          className="feedback-message feedback-message--success"
+          role="status"
+          aria-live="polite"
+        >
+          {successMessage}
+        </p>
+      )}
 
       <div className="bookdetails__card">
         <div className="bookdetails__main">
@@ -208,10 +297,29 @@ export default function BookDetails({ user }) {
       </div>
 
       {reviewsAvailable ? (
-        <section className="bookdetails__reviews" >
+        <section className="bookdetails__reviews">
           <h2 className="bookdetails__reviews-heading">
             Community Reviews {reviews.length > 0 ? `(${reviews.length})` : ""}
           </h2>
+          {reviewFeedback && (
+            <p
+              className="feedback-message feedback-message--success"
+              role="status"
+              aria-live="polite"
+            >
+              {reviewFeedback}
+            </p>
+          )}
+
+          {reviewError && (
+            <p
+              className="feedback-message feedback-message--error"
+              role="alert"
+              aria-live="assertive"
+            >
+              {reviewError}
+            </p>
+          )}
 
           {reviewsError ? (
             <p className="bookdetails__status">
@@ -242,7 +350,6 @@ export default function BookDetails({ user }) {
                 </p>
               )}
             </>
-            
           )}
         </section>
       ) : null}

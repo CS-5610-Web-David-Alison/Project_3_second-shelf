@@ -88,7 +88,11 @@ function ReviewForm({ bookId, onSubmit, initialData, isEditing, onCancel }) {
           required
         />
 
-        {error ? <p className="form-error">{error}</p> : null}
+        {error ? (
+          <p className="form-error" role="alert" aria-live="assertive">
+            {error}
+          </p>
+        ) : null}
 
         <div className="review-form-actions">
           <button type="submit">

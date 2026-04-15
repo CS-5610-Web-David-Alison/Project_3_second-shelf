@@ -32,6 +32,8 @@ export default function AddBook({ user }) {
   // True while the existing book is being fetched in edit mode
   const [loading, setLoading] = useState(isEditing);
 
+  const [error, setError] = useState("");
+
   // Fetch the existing book data when in edit mode so we can pre-fill the form
   useEffect(() => {
     if (!isEditing) return;
@@ -47,12 +49,22 @@ export default function AddBook({ user }) {
    * @param {Object} data - Validated book fields from BookForm
    */
   async function handleSubmit(data) {
-    if (isEditing) {
-      await updateBook(id, data);
-      navigate(`/books/${id}`); // Return to the listing that was just edited
-    } else {
-      const result = await createBook(data);
-      navigate(`/books/${result.insertedId}`); // Go to the newly created listing
+    setError("");
+
+    try {
+      if (isEditing) {
+        await updateBook(id, data);
+        navigate(`/books/${id}`, {
+          state: { successMessage: "Listing updated successfully." },
+        });
+      } else {
+        const result = await createBook(data);
+        navigate(`/books/${result.insertedId}`, {
+          state: { successMessage: "Book listed successfully." },
+        });
+      }
+    } catch (err) {
+      setError(err.message || "Failed to save listing.");
     }
   }
 
@@ -80,6 +92,15 @@ export default function AddBook({ user }) {
           : "Fill in the details below to list your book for sale."}
       </p>
 
+      {error && (
+        <p
+          className="feedback-message feedback-message--error"
+          role="alert"
+          aria-live="assertive"
+        >
+          {error}
+        </p>
+      )}
       {/* BookForm receives pre-populated values when editing, empty defaults when creating */}
       <BookForm
         initial={initial}

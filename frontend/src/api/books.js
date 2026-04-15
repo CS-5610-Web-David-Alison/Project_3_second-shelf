@@ -41,10 +41,20 @@ export async function fetchBook(id) {
  * @param {Object} data - Book fields: title, author, price, condition, description
  * @returns {Promise<Object>} Object containing the new listing's insertedId
  */
+// export async function createBook(data) {
+//   const res = await fetch(BASE, {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(data),
+//   });
+//   if (!res.ok) throw new Error("Failed to create book");
+//   return res.json();
+// }
 export async function createBook(data) {
   const res = await fetch(BASE, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
+    credentials: "include",
     body: JSON.stringify(data),
   });
   if (!res.ok) throw new Error("Failed to create book");
@@ -57,10 +67,20 @@ export async function createBook(data) {
  * @param {Object} data - Fields to update
  * @returns {Promise<Object>} Confirmation message
  */
+// export async function updateBook(id, data) {
+//   const res = await fetch(`${BASE}/${id}`, {
+//     method: "PUT",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(data),
+//   });
+//   if (!res.ok) throw new Error("Failed to update book");
+//   return res.json();
+// }
 export async function updateBook(id, data) {
   const res = await fetch(`${BASE}/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
+    credentials: "include",
     body: JSON.stringify(data),
   });
   if (!res.ok) throw new Error("Failed to update book");
@@ -72,8 +92,16 @@ export async function updateBook(id, data) {
  * @param {string} id - The book's _id
  * @returns {Promise<Object>} Confirmation message
  */
+// export async function deleteBook(id) {
+//   const res = await fetch(`${BASE}/${id}`, { method: "DELETE" });
+//   if (!res.ok) throw new Error("Failed to delete book");
+//   return res.json();
+// }
 export async function deleteBook(id) {
-  const res = await fetch(`${BASE}/${id}`, { method: "DELETE" });
+  const res = await fetch(`${BASE}/${id}`, {
+    method: "DELETE",
+    credentials: "include",
+  });
   if (!res.ok) throw new Error("Failed to delete book");
   return res.json();
 }

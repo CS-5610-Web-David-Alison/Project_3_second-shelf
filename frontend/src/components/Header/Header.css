@@ -42,3 +42,24 @@
 .site-navbar .navbar-toggler-icon {
   filter: invert(1);
 }
+
+
+.site-navbar__cta {
+  background-color: #d97706;
+  color: #ffffff !important;
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 0.45rem 0.9rem;
+  text-decoration: none;
+  border: none;
+}
+
+.site-navbar__cta:hover,
+.site-navbar__cta:focus {
+  background-color: #b45309;
+  color: #ffffff !important;
+}
+
+.site-navbar__cta--active {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+}

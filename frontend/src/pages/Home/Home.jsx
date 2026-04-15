@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router";
 import BookList from "../../components/BookList/BookList";
 import {
   fetchBooks,
@@ -7,7 +9,7 @@ import {
 } from "../../api/books";
 import "./Home.css";
 
-function Home() {
+function Home({ user }) {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -80,6 +82,13 @@ function Home() {
             : "Sort by Highest Rating"}
         </button>
       </div> */}
+      {user ? (
+        <div className="home-page__hero-actions">
+          <Link to="/add" className="home-page__cta">
+            + Sell a Book
+          </Link>
+        </div>
+      ) : null}
       <form className="home-page__controls" onSubmit={handleSearchSubmit}>
         <label htmlFor="book-search" className="home-page__label">
           Search books
@@ -127,5 +136,16 @@ function Home() {
     </main>
   );
 }
+
+Home.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+  }),
+};
+
+Home.defaultProps = {
+  user: null,
+};
 
 export default Home;

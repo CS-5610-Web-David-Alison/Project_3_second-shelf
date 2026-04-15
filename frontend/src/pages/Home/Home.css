@@ -87,3 +87,24 @@
 .home-page__clear-button:hover {
   background-color: #4b5563;
 }
+
+.home-page__hero-actions {
+  margin-bottom: 1.5rem;
+}
+
+.home-page__cta {
+  display: inline-block;
+  background-color: #5a3e2b;
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.home-page__cta:hover,
+.home-page__cta:focus {
+  background-color: #7a5540;
+  color: white;
+  text-decoration: none;
+}

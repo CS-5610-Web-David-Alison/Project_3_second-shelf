@@ -13,3 +13,34 @@
   margin-bottom: 1.5rem;
   color: #555;
 }
+
+.mylistings-empty-state {
+  margin-top: 2rem;
+  padding: 2rem;
+  border: 1px solid #e0d6cc;
+  border-radius: 8px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.mylistings-empty-state p {
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.mylistings-empty-state__cta {
+  display: inline-block;
+  background-color: #5a3e2b;
+  color: #fff;
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.mylistings-empty-state__cta:hover,
+.mylistings-empty-state__cta:focus {
+  background-color: #7a5540;
+  color: #fff;
+  text-decoration: none;
+}

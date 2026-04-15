@@ -44,7 +44,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header user={user} onLogout={handleLogout} />
-
+      
       <Routes>
         <Route path="/" element={<Home user={user} />} />
         <Route path="/register" element={<Register />} />

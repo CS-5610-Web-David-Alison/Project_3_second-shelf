@@ -17,8 +17,14 @@ const CONDITIONS = ["Like New", "Good", "Fair", "Poor"];
  * @param {Object}   [props.initial]     - Pre-populated values when editing an existing listing
  * @param {Function} props.onSubmit      - Callback receiving the validated form data object
  * @param {string}   [props.submitLabel] - Label for the submit button (defaults to 'Submit')
+ * @param {boolean}  [props.isSubmitting] - Indicates if the form is currently submitting
  */
-export default function BookForm({ initial, onSubmit, submitLabel }) {
+export default function BookForm({
+  initial,
+  onSubmit,
+  submitLabel,
+  isSubmitting,
+}) {
   // Each field is a controlled input initialised from `initial` if provided
   const [title, setTitle] = useState(initial?.title ?? "");
   const [author, setAuthor] = useState(initial?.author ?? "");
@@ -74,6 +80,7 @@ export default function BookForm({ initial, onSubmit, submitLabel }) {
         />
 
         <label htmlFor="price">Price ($)</label>
+        <small>Enter a price between $0–$100</small>
         <input
           id="price"
           type="number"
@@ -106,13 +113,23 @@ export default function BookForm({ initial, onSubmit, submitLabel }) {
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <button type="submit" className="book-form__submit">
-          {submitLabel ?? "Submit"}
+        <button
+          type="submit"
+          className="book-form__submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Saving..." : (submitLabel ?? "Submit")}
         </button>
       </fieldset>
     </form>
   );
 }
+
+BookForm.defaultProps = {
+  initial: null,
+  submitLabel: "Submit",
+  isSubmitting: false,
+};
 
 BookForm.propTypes = {
   initial: PropTypes.shape({
@@ -124,4 +141,5 @@ BookForm.propTypes = {
   }),
   onSubmit: PropTypes.func.isRequired,
   submitLabel: PropTypes.string,
+  isSubmitting: PropTypes.bool,
 };

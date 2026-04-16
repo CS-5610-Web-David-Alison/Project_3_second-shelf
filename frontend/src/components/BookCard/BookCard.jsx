@@ -23,9 +23,9 @@ export default function BookCard({ book }) {
     <article className="book-card">
       <div className="book-card__info">
         {/* Title links to the full BookDetails page for this listing */}
-        <h3 className="book-card__title">
+        <h2 className="book-card__title">
           <Link to={`/books/${book._id}`}>{book.title}</Link>
-        </h3>
+        </h2>
 
         <p className="book-card__author">{book.author}</p>
 

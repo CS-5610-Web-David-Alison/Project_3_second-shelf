@@ -23,7 +23,7 @@
 
 /* Book title — dark text; the nested <a> inherits and overrides on hover */
 .book-card__title {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 0.2rem;
 }

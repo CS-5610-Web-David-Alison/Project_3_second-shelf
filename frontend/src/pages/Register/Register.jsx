@@ -12,6 +12,7 @@ function Register() {
   });
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const headingRef = useRef(null);
 
   useEffect(() => {
@@ -30,6 +31,7 @@ function Register() {
     event.preventDefault();
     setError("");
     setMessage("");
+    setLoading(true);
 
     try {
       await registerUser(formData);
@@ -39,12 +41,16 @@ function Register() {
       });
     } catch (err) {
       setError(err.message);
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
     <main className="auth-page">
-      <h1 tabIndex="-1" ref={headingRef}>Register</h1>
+      <h1 tabIndex="-1" ref={headingRef}>
+        Register
+      </h1>
 
       <form className="auth-form" onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
@@ -56,6 +62,7 @@ function Register() {
           onChange={handleChange}
           required
         />
+        <small>Enter your full name</small>
 
         <label htmlFor="email">Email</label>
         <input
@@ -76,8 +83,10 @@ function Register() {
           onChange={handleChange}
           required
         />
-
-        <button type="submit">Create Account</button>
+        <small>Must be at least 6 characters</small>
+        <button type="submit" disabled={loading}>
+          {loading ? "Creating account..." : "Create Account"}
+        </button>
       </form>
 
       {message && (

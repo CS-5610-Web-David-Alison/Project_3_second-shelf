@@ -19,6 +19,9 @@ import "./AddBook.css";
  * @param {Object|null} props.user - The currently logged-in user, or null if not authenticated
  */
 export default function AddBook({ user }) {
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [success, setSuccess] = useState("");
   // id is present on the /edit/:id route; undefined on the /add route
   const { id } = useParams();
   const navigate = useNavigate();
@@ -55,6 +58,7 @@ export default function AddBook({ user }) {
    */
   async function handleSubmit(data) {
     setError("");
+    setIsSubmitting(true);
 
     try {
       if (isEditing) {
@@ -62,14 +66,18 @@ export default function AddBook({ user }) {
         navigate(`/books/${id}`, {
           state: { successMessage: "Listing updated successfully." },
         });
+        setSuccess("Book updated successfully!");
       } else {
         const result = await createBook(data);
+        setSuccess("Book created successfully!");
         navigate(`/books/${result.insertedId}`, {
           state: { successMessage: "Book listed successfully." },
         });
       }
     } catch (err) {
       setError(err.message || "Failed to save listing.");
+    }finally {
+      setIsSubmitting(false); 
     }
   }
 
@@ -106,11 +114,13 @@ export default function AddBook({ user }) {
           {error}
         </p>
       )}
+      {success && <p role="status">{success}</p>}
       {/* BookForm receives pre-populated values when editing, empty defaults when creating */}
       <BookForm
         initial={initial}
         onSubmit={handleSubmit}
         submitLabel={isEditing ? "Save Changes" : "List Book"}
+        isSubmitting={isSubmitting}
       />
     </div>
   );

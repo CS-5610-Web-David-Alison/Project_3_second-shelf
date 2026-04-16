@@ -3,7 +3,9 @@ body {
   color: #2c2c2c;
   background-color: #faf9f7;
 }
-
+p {
+  line-height: 1.7;
+}
 :focus {
   outline: 3px solid #2563eb;
   outline-offset: 2px;
@@ -40,3 +42,14 @@ body {
   border: 1px solid #fca5a5;
 }
 
+button {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+}
+button:active {
+  transform: scale(0.98);
+}
+
+button:focus {
+  outline: 3px solid #2563eb;
+}

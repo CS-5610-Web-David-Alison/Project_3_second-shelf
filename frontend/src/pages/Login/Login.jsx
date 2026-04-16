@@ -12,6 +12,7 @@ function Login({ onLogin }) {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const headingRef = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     headingRef.current?.focus();
@@ -29,6 +30,7 @@ function Login({ onLogin }) {
     event.preventDefault();
     setError("");
     setSuccess("");
+    setLoading(true);
 
     try {
       const data = await loginUser(formData);
@@ -37,12 +39,16 @@ function Login({ onLogin }) {
       navigate("/");
     } catch (err) {
       setError(err.message);
+    }finally{
+      setLoading(false);
     }
   }
 
   return (
     <main className="auth-page">
-      <h1 tabIndex="-1" ref={headingRef}>Login</h1>
+      <h1 tabIndex="-1" ref={headingRef}>
+        Login
+      </h1>
 
       <form className="auth-form" onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
@@ -55,6 +61,7 @@ function Login({ onLogin }) {
           onChange={handleChange}
           required
         />
+        <small>Enter the email you registered with</small>
 
         <label htmlFor="password">Password</label>
         <input
@@ -66,7 +73,9 @@ function Login({ onLogin }) {
           required
         />
 
-        <button type="submit">Login</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </button>
       </form>
 
       {success && (

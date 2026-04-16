@@ -34,9 +34,7 @@ export default function BookDetails({ user }) {
   const [error, setError] = useState("");
   const [reviewsError, setReviewsError] = useState(false);
   const location = useLocation();
-  const [successMessage] = useState(
-    location.state?.successMessage || "",
-  );
+  const [successMessage] = useState(location.state?.successMessage || "");
   const [reviewFeedback, setReviewFeedback] = useState("");
   const [reviewError, setReviewError] = useState("");
   const headingRef = useRef(null);
@@ -89,24 +87,6 @@ export default function BookDetails({ user }) {
     }
   }
 
-  // async function handleCreateReview(data) {
-  //   const result = await createReviewFn(data);
-
-  //   setReviews((prev) => [
-  //     {
-  //       _id: result.insertedId,
-  //       bookId: id,
-  //       rating: data.rating,
-  //       reviewText: data.reviewText,
-  //       userId: user.id,
-  //       userName: user.name,
-  //     },
-  //     ...prev,
-  //   ]);
-  //   setReviewError("");
-  //   setReviewFeedback("Review submitted successfully.");
-  // }
-
   async function handleCreateReview(data) {
     try {
       setReviewError(""); // clear old errors
@@ -129,31 +109,6 @@ export default function BookDetails({ user }) {
       setReviewError(err.message || "Failed to submit review.");
     }
   }
-
-  // async function handleUpdateReview(data) {
-  //   if (!editingReview) {
-  //     return;
-  //   }
-
-  //   await updateReviewFn(editingReview._id, {
-  //     rating: data.rating,
-  //     reviewText: data.reviewText,
-  //   });
-
-  //   setReviews((prev) =>
-  //     prev.map((review) =>
-  //       review._id === editingReview._id
-  //         ? {
-  //             ...review,
-  //             rating: data.rating,
-  //             reviewText: data.reviewText,
-  //           }
-  //         : review,
-  //     ),
-  //   );
-
-  //   setEditingReview(null);
-  // }
 
   async function handleUpdateReview(data) {
     try {
@@ -184,15 +139,6 @@ export default function BookDetails({ user }) {
       setReviewError(err.message || "Failed to update review.");
     }
   }
-
-  // async function handleDeleteReview(reviewId) {
-  //   await deleteReviewFn(reviewId);
-  //   setReviews((prev) => prev.filter((review) => review._id !== reviewId));
-
-  //   if (editingReview && editingReview._id === reviewId) {
-  //     setEditingReview(null);
-  //   }
-  // }
 
   async function handleDeleteReview(reviewId) {
     try {

@@ -32,12 +32,14 @@ export default function BookList({ books, loading, error, emptyMessage }) {
     return <p className="booklist__status booklist__status--error">{error}</p>;
   }
 
-  // if (!books.length) {
-  //   return <p className="booklist__status">No books found.</p>;
-  // }
   if (!books.length) {
-  return <p className="booklist__status">{emptyMessage}</p>;
-}
+    return (
+      <div className="booklist__status">
+        <h2>No books found</h2>
+        <p className="booklist__status">{emptyMessage}</p>
+      </div>
+    );
+  }
 
   return (
     <>

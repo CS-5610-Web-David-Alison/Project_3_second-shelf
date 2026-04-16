@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router";
 import BookList from "../../components/BookList/BookList";
@@ -17,9 +17,12 @@ function Home({ user }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [query, setQuery] = useState("");
   const location = useLocation();
-  const [successMessage, setSuccessMessage] = useState(
-    location.state?.successMessage || "",
-  );
+  const [successMessage] = useState(location.state?.successMessage || "");
+  const headingRef = useRef(null);
+
+  useEffect(() => {
+    headingRef.current?.focus();
+  }, []);
 
   useEffect(() => {
     loadBooks();
@@ -65,36 +68,22 @@ function Home({ user }) {
 
   return (
     <main className="home-page">
-      <h1>Second-Shelf</h1>
-      <p>Discover affordable used books and read community reviews.</p>
-      {/* <div className="home-page__controls">
-        <label htmlFor="book-search" className="home-page__label">
-          Search books
-        </label>
-        <input
-          id="book-search"
-          type="text"
-          className="home-page__search"
-          placeholder="Search by title or author"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-
-        <button className="sort-button" onClick={toggleSort}>
-          {sortMode === "rating"
-            ? "Show Default Order"
-            : "Sort by Highest Rating"}
-        </button>
-      </div> */}
+      <h1 tabIndex="-1" ref={headingRef}>
+        Second-Shelf
+      </h1>
+      <p>
+        Search by title or author, browse used books, and log in to sell your
+        own.
+      </p>{" "}
       {successMessage && (
-  <p
-    className="feedback-message feedback-message--success"
-    role="status"
-    aria-live="polite"
-  >
-    {successMessage}
-  </p>
-)}
+        <p
+          className="feedback-message feedback-message--success"
+          role="status"
+          aria-live="polite"
+        >
+          {successMessage}
+        </p>
+      )}
       {user ? (
         <div className="home-page__hero-actions">
           <Link to="/add" className="home-page__cta">

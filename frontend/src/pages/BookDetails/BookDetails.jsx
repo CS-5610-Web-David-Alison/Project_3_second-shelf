@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate, Link, useLocation } from "react-router";
 import PropTypes from "prop-types";
 import { fetchBook, deleteBook } from "../../api/books.js";
@@ -34,11 +34,16 @@ export default function BookDetails({ user }) {
   const [error, setError] = useState("");
   const [reviewsError, setReviewsError] = useState(false);
   const location = useLocation();
-  const [successMessage, setSuccessMessage] = useState(
+  const [successMessage] = useState(
     location.state?.successMessage || "",
   );
   const [reviewFeedback, setReviewFeedback] = useState("");
   const [reviewError, setReviewError] = useState("");
+  const headingRef = useRef(null);
+
+  useEffect(() => {
+    headingRef.current?.focus();
+  }, []);
 
   useEffect(() => {
     async function loadBookDetails() {
@@ -253,7 +258,9 @@ export default function BookDetails({ user }) {
 
       <div className="bookdetails__card">
         <div className="bookdetails__main">
-          <h1 className="bookdetails__title">{book.title}</h1>
+          <h1 className="bookdetails__title" tabIndex="-1" ref={headingRef}>
+            {book.title}
+          </h1>
           <p className="bookdetails__author">by {book.author}</p>
 
           <div className="bookdetails__meta">
@@ -287,6 +294,7 @@ export default function BookDetails({ user }) {
               <button
                 type="button"
                 className="bookdetails__btn bookdetails__btn--delete"
+                aria-label="Delete this book listing"
                 onClick={handleDeleteBook}
               >
                 Delete Listing

@@ -6,7 +6,7 @@
 // On successful submit, redirects to the listing's detail page.
 // Redirects unauthenticated users with a message instead of showing the form.
 
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import PropTypes from "prop-types";
 import BookForm from "../../components/BookForm/BookForm.jsx";
@@ -33,6 +33,11 @@ export default function AddBook({ user }) {
   const [loading, setLoading] = useState(isEditing);
 
   const [error, setError] = useState("");
+  const headingRef = useRef(null);
+
+  useEffect(() => {
+    headingRef.current?.focus();
+  }, []);
 
   // Fetch the existing book data when in edit mode so we can pre-fill the form
   useEffect(() => {
@@ -83,7 +88,7 @@ export default function AddBook({ user }) {
   return (
     <div className="addbook">
       {/* Page heading changes based on whether we are creating or editing */}
-      <h1 className="addbook__heading">
+      <h1 className="addbook__heading" tabIndex="-1" ref={headingRef}>
         {isEditing ? "Edit Listing" : "Sell a Book"}
       </h1>
       <p className="addbook__subheading">

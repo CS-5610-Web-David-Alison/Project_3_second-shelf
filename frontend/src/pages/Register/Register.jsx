@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { registerUser } from "../../api/auth";
 import "./Register.css";
@@ -12,6 +12,11 @@ function Register() {
   });
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const headingRef = useRef(null);
+
+  useEffect(() => {
+    headingRef.current?.focus();
+  }, []);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -39,7 +44,7 @@ function Register() {
 
   return (
     <main className="auth-page">
-      <h1>Register</h1>
+      <h1 tabIndex="-1" ref={headingRef}>Register</h1>
 
       <form className="auth-form" onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>

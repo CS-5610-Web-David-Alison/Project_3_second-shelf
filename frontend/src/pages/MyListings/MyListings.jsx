@@ -70,7 +70,7 @@
 
 // export default MyListings;
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router";
 import { fetchMyBooks } from "../../api/books.js";
@@ -81,6 +81,11 @@ function MyListings({ user }) {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const headingRef = useRef(null);
+
+  useEffect(() => {
+    headingRef.current?.focus();
+  }, []);
 
   useEffect(() => {
     async function loadMyBooks() {
@@ -104,7 +109,9 @@ function MyListings({ user }) {
   if (!user) {
     return (
       <main className="mylistings-page">
-        <h1>My Listings</h1>
+        <h1 tabIndex="-1" ref={headingRef}>
+          My Listings
+        </h1>
         <p>You must be logged in to view your listings.</p>
       </main>
     );
@@ -112,11 +119,14 @@ function MyListings({ user }) {
 
   return (
     <main className="mylistings-page">
-      <h1>My Listings</h1>
+      <h1 tabIndex="-1" ref={headingRef}>
+        My Listings
+      </h1>
       <p>Books you are currently selling.</p>
 
       {!loading && !error && books.length === 0 ? (
         <section className="mylistings-empty-state">
+          <h2 className="mylistings-empty-state__heading">No listings yet</h2>
           <p>You have not listed any books yet.</p>
           <Link to="/add" className="mylistings-empty-state__cta">
             Sell your first book

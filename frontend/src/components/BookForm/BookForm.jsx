@@ -50,11 +50,11 @@ export default function BookForm({ initial, onSubmit, submitLabel }) {
   }
 
   return (
-    <div className="book-form">
+    <form className="book-form" onSubmit={handleSubmit}>
       {/* Inline validation error shown above the fields */}
       {error && <p className="book-form__error">{error}</p>}
 
-      <div className="book-form__fields">
+      <fieldset className="book-form__fields">
         <label htmlFor="title">Title</label>
         <input
           id="title"
@@ -106,15 +106,11 @@ export default function BookForm({ initial, onSubmit, submitLabel }) {
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <button
-          type="button"
-          onClick={handleSubmit}
-          className="book-form__submit"
-        >
+        <button type="submit" className="book-form__submit">
           {submitLabel ?? "Submit"}
         </button>
-      </div>
-    </div>
+      </fieldset>
+    </form>
   );
 }
 

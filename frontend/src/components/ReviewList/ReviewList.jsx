@@ -25,25 +25,21 @@ function ReviewList({ reviews, currentUser, onEdit, onDelete }) {
                 <span className="review-user">
                   {review.userName || "Anonymous"}
                 </span>
-                <span className="review-rating">
-                  ⭐ {review.rating}/5
-                </span>
+                <span className="review-rating">⭐ {review.rating}/5</span>
               </div>
 
               <p className="review-text">{review.reviewText}</p>
 
               {isOwner ? (
                 <div className="review-actions">
-                  <button
-                    type="button"
-                    onClick={() => onEdit(review)}
-                  >
+                  <button type="button" onClick={() => onEdit(review)}>
                     Edit
                   </button>
 
                   <button
                     type="button"
                     className="delete-button"
+                    aria-label="Delete review"
                     onClick={() => onDelete(review._id)}
                   >
                     Delete
@@ -65,20 +61,20 @@ ReviewList.propTypes = {
       userId: PropTypes.string,
       userName: PropTypes.string,
       rating: PropTypes.number.isRequired,
-      reviewText: PropTypes.string
-    })
+      reviewText: PropTypes.string,
+    }),
   ),
   currentUser: PropTypes.shape({
     id: PropTypes.string,
-    name: PropTypes.string
+    name: PropTypes.string,
   }),
   onEdit: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired
+  onDelete: PropTypes.func.isRequired,
 };
 
 ReviewList.defaultProps = {
   reviews: [],
-  currentUser: null
+  currentUser: null,
 };
 
 export default ReviewList;

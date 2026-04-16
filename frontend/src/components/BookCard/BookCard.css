@@ -36,6 +36,12 @@
   color: #5a3e2b;
 }
 
+.book-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
 /* Author line — muted grey, smaller than the title */
 .book-card__author {
   font-size: 0.875rem;

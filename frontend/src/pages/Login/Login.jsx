@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { loginUser } from "../../api/auth";
 import "./Login.css";
@@ -11,6 +11,11 @@ function Login({ onLogin }) {
   });
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const headingRef = useRef(null);
+
+  useEffect(() => {
+    headingRef.current?.focus();
+  }, []);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -37,7 +42,7 @@ function Login({ onLogin }) {
 
   return (
     <main className="auth-page">
-      <h1>Login</h1>
+      <h1 tabIndex="-1" ref={headingRef}>Login</h1>
 
       <form className="auth-form" onSubmit={handleSubmit}>
         <label htmlFor="email">Email</label>
@@ -45,6 +50,7 @@ function Login({ onLogin }) {
           id="email"
           name="email"
           type="email"
+          aria-describedby="email-error"
           value={formData.email}
           onChange={handleChange}
           required
@@ -76,6 +82,7 @@ function Login({ onLogin }) {
       {error && (
         <p
           className="feedback-message feedback-message--error"
+          id="email-error"
           role="alert"
           aria-live="assertive"
         >

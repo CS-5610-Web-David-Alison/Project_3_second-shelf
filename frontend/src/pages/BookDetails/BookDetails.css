@@ -5,10 +5,19 @@
    ReviewList and ReviewForm have their own CSS files. */
 
 /* Shared loading / error / not-found status message */
+
+.bookdetails {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
 .bookdetails__status {
+  max-width: 1000px;
+  margin: 2rem auto 0;
+  padding: 1rem;
   text-align: center;
-  margin-top: 3rem;
-  color: #666;
+  color: #444;
 }
 
 /* Error variant — red text to draw attention to the failure */
@@ -23,7 +32,7 @@
   font-size: 1rem;
   font-weight: bold;
   color: #5a3e2b;
-  padding: 2rem;
+  padding: 0;
 }
 
 /* Main listing info card — white background with soft brown border */
@@ -40,14 +49,14 @@
   font-size: 1.75rem;
   font-weight: 800;
   color: #2c2c2c;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 
 /* Author byline — muted grey, sits directly below the title */
 .bookdetails__author {
-  color: #666;
+  color: #444;
   font-size: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 /* Meta row — price, condition badge, and average rating side by side */
@@ -75,10 +84,22 @@
 }
 
 /* Colour-coded condition modifiers — must match BookCard.css */
-.bookdetails__condition--like-new { background: #d4edda; color: #155724; }  
-.bookdetails__condition--good     { background: #cce5ff; color: #004085; }  
-.bookdetails__condition--fair     { background: #fff3cd; color: #856404; } 
-.bookdetails__condition--poor     { background: #f8d7da; color: #721c24; }  
+.bookdetails__condition--like-new {
+  background: #d4edda;
+  color: #155724;
+}
+.bookdetails__condition--good {
+  background: #cce5ff;
+  color: #004085;
+}
+.bookdetails__condition--fair {
+  background: #fff3cd;
+  color: #856404;
+}
+.bookdetails__condition--poor {
+  background: #f8d7da;
+  color: #721c24;
+}
 
 /* Average rating badge — gold star and score from reviews */
 .bookdetails__rating {
@@ -146,7 +167,7 @@
 .bookdetails__login-prompt {
   margin-top: 1rem;
   font-size: 0.9rem;
-  color: #666;
+  color: #444;
 }
 
 /* Inline "Log in" text button inside the prompt */
@@ -161,7 +182,5 @@
 }
 
 .bookdetails__reviews {
-  padding: 2rem;
+  padding: 1.5rem 0;
 }
-
-

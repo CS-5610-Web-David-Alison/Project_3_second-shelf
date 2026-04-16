@@ -14,26 +14,21 @@
   font-size: 1.75rem;
   font-weight: 800;
   color: #5a3e2b;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.75rem;
 }
 
 /* Supporting description below the heading — muted grey */
 .addbook__subheading {
   color: #666;
   font-size: 0.95rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
-/* Message shown when a user tries to access the page without being logged in */
-.addbook__auth-msg {
-  text-align: center;
-  margin-top: 3rem;
-  color: #666;
-}
-
-/* Loading indicator shown while fetching an existing listing in edit mode */
+.addbook__auth-msg,
 .addbook__status {
+  max-width: 700px;
+  margin: 2rem auto 0;
+  padding: 1rem;
   text-align: center;
-  margin-top: 3rem;
   color: #666;
 }

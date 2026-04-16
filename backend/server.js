@@ -36,15 +36,30 @@ app.set("trust proxy", 1);
 //     },
 //   })
 // );
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET || "change-me",
+//     resave: false,
+//     saveUninitialized: false,
+//     cookie: {
+//       secure: process.env.NODE_ENV === "production",
+//       httpOnly: true,
+//       sameSite: "lax",
+//       maxAge: 24 * 60 * 60 * 1000,
+//     },
+//   })
+// );
+
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || "change-me",
+    secret:
+      process.env.SESSION_SECRET || "your-secret-key-change-in-production",
     resave: false,
     saveUninitialized: false,
     cookie: {
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,
-      sameSite: "lax",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       maxAge: 24 * 60 * 60 * 1000,
     },
   })

@@ -4,7 +4,7 @@ A community marketplace for discovering and reviewing used books.
 
 ## Author 
 
-David Ahn, Alison Avery
+David Ahn 
 
 ## Class Link
 This project was completed as part of:
@@ -18,10 +18,10 @@ Design Document:
 
 ## Demo
 Public Deployment:
-[https://project-3-second-shelf.onrender.com/]
+[https://project-4-second-shelf.onrender.com/]
 
 GitHub Repository:
-[https://github.com/CS-5610-Web-David-Alison/Project_3_second-shelf]
+[https://github.com/CS-5610-Web-David-Alison/Project_3_second-shelf/tree/David_Ahn_Project_4_Usability_Update]
 
 Application Walkthrough:
 [https://youtu.be/3CvYk5Oe7SY]

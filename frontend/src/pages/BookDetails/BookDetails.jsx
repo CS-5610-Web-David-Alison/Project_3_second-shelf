@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { fetchBook, deleteBook } from "../../api/books.js";
 import ReviewList from "../../components/ReviewList/ReviewList.jsx";
 import ReviewForm from "../../components/ReviewForm/ReviewForm.jsx";
+import Modal from "../../components/Modal/Modal.jsx";
 import "./BookDetails.css";
 
 let fetchReviewsByBookIdFn;
@@ -26,18 +27,21 @@ try {
 export default function BookDetails({ user }) {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const [book, setBook] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [editingReview, setEditingReview] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [showDeleteReviewModal, setShowDeleteReviewModal] = useState(false);
+  const [reviewToDelete, setReviewToDelete] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [reviewsError, setReviewsError] = useState(false);
   const location = useLocation();
   const [successMessage] = useState(location.state?.successMessage || "");
   const [reviewFeedback, setReviewFeedback] = useState("");
   const [reviewError, setReviewError] = useState("");
   const headingRef = useRef(null);
+  const [showLoginRequiredModal, setShowLoginRequiredModal] = useState(false);
 
   useEffect(() => {
     headingRef.current?.focus();
@@ -73,10 +77,6 @@ export default function BookDetails({ user }) {
   }, [id]);
 
   async function handleDeleteBook() {
-    if (!window.confirm("Are you sure you want to delete this listing?")) {
-      return;
-    }
-
     try {
       await deleteBook(id);
       navigate("/", {
@@ -89,7 +89,7 @@ export default function BookDetails({ user }) {
 
   async function handleCreateReview(data) {
     try {
-      setReviewError(""); // clear old errors
+      setReviewError("");
       const result = await createReviewFn(data);
 
       setReviews((prev) => [
@@ -150,10 +150,18 @@ export default function BookDetails({ user }) {
       if (editingReview && editingReview._id === reviewId) {
         setEditingReview(null);
       }
+
+      setShowDeleteReviewModal(false);
+      setReviewToDelete(null);
       setReviewFeedback("Review deleted successfully.");
     } catch (err) {
       setReviewError(err.message || "Failed to delete review.");
     }
+  }
+
+  function handleOpenDeleteReviewModal(reviewId) {
+    setReviewToDelete(reviewId);
+    setShowDeleteReviewModal(true);
   }
 
   function handleEditReview(review) {
@@ -240,8 +248,8 @@ export default function BookDetails({ user }) {
               <button
                 type="button"
                 className="bookdetails__btn bookdetails__btn--delete"
-                aria-label="Delete this book listing"
-                onClick={handleDeleteBook}
+                aria-label={`Delete listing for ${book.title}`}
+                onClick={() => setShowDeleteModal(true)}
               >
                 Delete Listing
               </button>
@@ -285,7 +293,7 @@ export default function BookDetails({ user }) {
                 reviews={reviews}
                 currentUser={user}
                 onEdit={handleEditReview}
-                onDelete={handleDeleteReview}
+                onDelete={handleOpenDeleteReviewModal}
               />
 
               {user ? (
@@ -299,14 +307,64 @@ export default function BookDetails({ user }) {
                   onCancel={handleCancelEdit}
                 />
               ) : (
-                <p className="bookdetails__login-prompt">
-                  Log in to leave a review.
-                </p>
+                <div className="bookdetails__login-prompt">
+                  <p>Log in to leave a review.</p>
+                  <button
+                    type="button"
+                    className="bookdetails__login-link"
+                    onClick={() => setShowLoginRequiredModal(true)}
+                  >
+                    Log in to continue
+                  </button>
+                </div>
               )}
             </>
           )}
         </section>
       ) : null}
+      <Modal
+        isOpen={showDeleteModal}
+        title="Delete Listing"
+        onClose={() => setShowDeleteModal(false)}
+        onConfirm={() => {
+          setShowDeleteModal(false);
+          handleDeleteBook();
+        }}
+        confirmText="Yes, delete it"
+        cancelText="No, keep it"
+        confirmVariant="danger"
+      >
+        <p>Are you sure you want to delete this book listing?</p>
+      </Modal>
+      <Modal
+        isOpen={showDeleteReviewModal}
+        title="Delete Review"
+        onClose={() => {
+          setShowDeleteReviewModal(false);
+          setReviewToDelete(null);
+        }}
+        onConfirm={() => handleDeleteReview(reviewToDelete)}
+        confirmText="Yes, delete it"
+        cancelText="No, keep it"
+        confirmVariant="danger"
+      >
+        <p>Are you sure you want to delete this review?</p>
+      </Modal>
+      <Modal
+        isOpen={showLoginRequiredModal}
+        title="Login Required"
+        onClose={() => setShowLoginRequiredModal(false)}
+        onConfirm={() =>
+          navigate("/login", {
+            state: { from: `/books/${id}` },
+          })
+        }
+        confirmText="Go to Login"
+        cancelText="Cancel"
+        confirmVariant="primary"
+      >
+        <p>You need to log in before you can leave a review.</p>
+      </Modal>
     </div>
   );
 }

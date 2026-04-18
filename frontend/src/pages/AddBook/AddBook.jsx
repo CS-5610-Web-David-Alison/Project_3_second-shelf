@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import PropTypes from "prop-types";
 import BookForm from "../../components/BookForm/BookForm.jsx";
+import Modal from "../../components/Modal/Modal.jsx";
 import { createBook, fetchBook, updateBook } from "../../api/books.js";
 import "./AddBook.css";
 
@@ -19,9 +20,7 @@ import "./AddBook.css";
  * @param {Object|null} props.user - The currently logged-in user, or null if not authenticated
  */
 export default function AddBook({ user }) {
-
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [success, setSuccess] = useState("");
   // id is present on the /edit/:id route; undefined on the /add route
   const { id } = useParams();
   const navigate = useNavigate();
@@ -34,7 +33,7 @@ export default function AddBook({ user }) {
 
   // True while the existing book is being fetched in edit mode
   const [loading, setLoading] = useState(isEditing);
-
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [error, setError] = useState("");
   const headingRef = useRef(null);
 
@@ -66,27 +65,52 @@ export default function AddBook({ user }) {
         navigate(`/books/${id}`, {
           state: { successMessage: "Listing updated successfully." },
         });
-        setSuccess("Book updated successfully!");
       } else {
         const result = await createBook(data);
-        setSuccess("Book created successfully!");
         navigate(`/books/${result.insertedId}`, {
           state: { successMessage: "Book listed successfully." },
         });
       }
     } catch (err) {
       setError(err.message || "Failed to save listing.");
-    }finally {
-      setIsSubmitting(false); 
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
   // Guard: show a message and no form if the user is not logged in
   if (!user) {
     return (
-      <p className="addbook__auth-msg">
-        You must be logged in to {isEditing ? "edit" : "add"} a listing.
-      </p>
+      <main className="addbook">
+        <h1 className="addbook__heading">Login Required</h1>
+        <p className="addbook__auth-msg">
+          You must be logged in to {isEditing ? "edit" : "add"} a listing.
+        </p>
+
+        <button
+          type="button"
+          className="book-form__submit"
+          onClick={() => setShowLoginModal(true)}
+        >
+          Log in to continue
+        </button>
+
+        <Modal
+          isOpen={showLoginModal}
+          title="Login Required"
+          onClose={() => setShowLoginModal(false)}
+          onConfirm={() =>
+            navigate("/login", {
+              state: { from: isEditing ? `/edit/${id}` : "/add" },
+            })
+          }
+          confirmText="Go to Login"
+          cancelText="Cancel"
+          confirmVariant="primary"
+        >
+          <p>You need to log in before you can continue.</p>
+        </Modal>
+      </main>
     );
   }
 
@@ -114,7 +138,6 @@ export default function AddBook({ user }) {
           {error}
         </p>
       )}
-      {success && <p role="status">{success}</p>}
       {/* BookForm receives pre-populated values when editing, empty defaults when creating */}
       <BookForm
         initial={initial}

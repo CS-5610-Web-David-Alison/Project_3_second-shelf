@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link, NavLink } from "react-router";
 import "./Header.css";
 import "../../index.css";
+import Modal from "../Modal/Modal";
 
 function Header({ user, onLogout }) {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -142,7 +143,7 @@ function Header({ user, onLogout }) {
           </div>
         </nav>
       </header>
-      {showLogoutModal && (
+      {/* {showLogoutModal && (
         <div
           className="modal-overlay"
           role="dialog"
@@ -179,7 +180,21 @@ function Header({ user, onLogout }) {
             </div>
           </div>
         </div>
-      )}
+      )} */}
+      <Modal
+        isOpen={showLogoutModal}
+        title="Confirm Logout"
+        onClose={() => setShowLogoutModal(false)}
+        onConfirm={() => {
+          setShowLogoutModal(false);
+          onLogout();
+        }}
+        confirmText="Yes"
+        cancelText="No"
+        confirmVariant="danger"
+      >
+        <p>Are you sure you want to log out?</p>
+      </Modal>
     </>
   );
 }

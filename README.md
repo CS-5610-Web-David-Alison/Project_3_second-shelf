@@ -32,7 +32,7 @@ Google Slides Presentation:
 
 # Project Objective
 
-Second-Shelf is a full stack web application to help users buy, sell, and review used books within a marketplace. Many students and readers have books they no longer need, or are looking for affordable options. This platform connects both groups and enhances decision making through community reviews.
+Second-Shelf is a full stack web application to help users buy, sell, and review used books within a marketplace. Many students and readers have books they no longer need, or are looking for affordable options. This platform connects groups and enhances decision making through community reviews.
 
 The platform is built with two independent modules:
 

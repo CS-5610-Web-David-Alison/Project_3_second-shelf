@@ -92,6 +92,8 @@ function Home({ user }) {
         </div>
       ) : null}
       <form className="home-page__controls" onSubmit={handleSearchSubmit}>
+        <h2 className="home-page__controls-heading">Search and Sort Books</h2>
+
         <label htmlFor="book-search" className="home-page__label">
           Search books
         </label>
@@ -122,11 +124,23 @@ function Home({ user }) {
 
           <button type="button" className="sort-button" onClick={toggleSort}>
             {sortMode === "rating"
-              ? "Show Default Order"
-              : "Sort by Highest Rating"}
+              ? "Show in Default Order"
+              : "Sort by Highest Average Review Rating"}
           </button>
+          <p className="home-page__sort-help">
+            Sort uses the average review rating from community reviews.
+          </p>
         </div>
       </form>
+      {sortMode === "rating" && (
+        <p
+          className="feedback-message feedback-message--success"
+          role="status"
+          aria-live="polite"
+        >
+          Showing books sorted by highest average review rating.
+        </p>
+      )}
       <BookList
         books={books}
         loading={loading}

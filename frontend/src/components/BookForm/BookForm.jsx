@@ -31,7 +31,7 @@ export default function BookForm({
   const [price, setPrice] = useState(initial?.price ?? "");
   const [condition, setCondition] = useState(initial?.condition ?? "Good");
   const [description, setDescription] = useState(initial?.description ?? "");
-
+  const [imageUrl, setImageUrl] = useState(initial?.imageUrl ?? "");
   // Holds a user-facing validation error message
   const [error, setError] = useState("");
 
@@ -52,6 +52,7 @@ export default function BookForm({
       price: parseFloat(price),
       condition,
       description,
+      imageUrl,
     });
   }
 
@@ -104,6 +105,15 @@ export default function BookForm({
             </option>
           ))}
         </select>
+        <label htmlFor="imageUrl">Book Image URL</label>
+        <input
+          id="imageUrl"
+          type="url"
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
+          placeholder="https://example.com/book-cover.jpg"
+        />
+        <small>Paste a public image URL for the book cover.</small>
 
         <label htmlFor="description">Description</label>
         <textarea
@@ -138,6 +148,7 @@ BookForm.propTypes = {
     price: PropTypes.number,
     condition: PropTypes.string,
     description: PropTypes.string,
+    imageUrl: PropTypes.string,
   }),
   onSubmit: PropTypes.func.isRequired,
   submitLabel: PropTypes.string,

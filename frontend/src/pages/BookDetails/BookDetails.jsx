@@ -212,6 +212,17 @@ export default function BookDetails({ user }) {
 
       <div className="bookdetails__card">
         <div className="bookdetails__main">
+          {book.imageUrl ? (
+            <img
+              src={book.imageUrl}
+              alt={`Cover of ${book.title}`}
+              className="bookdetails__image"
+            />
+          ) : (
+            <div className="bookdetails__image-placeholder" aria-hidden="true">
+              No Image Available
+            </div>
+          )}
           <h1 className="bookdetails__title" tabIndex="-1" ref={headingRef}>
             {book.title}
           </h1>

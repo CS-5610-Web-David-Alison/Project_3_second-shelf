@@ -184,3 +184,29 @@
 .bookdetails__reviews {
   padding: 1.5rem 0;
 }
+
+
+.bookdetails__image {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  display: block;
+  margin-bottom: 1.25rem;
+  border-radius: 8px;
+  border: 1px solid #e0d6cc;
+}
+
+.bookdetails__image-placeholder {
+  width: 100%;
+  max-width: 320px;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  background: #f3efe9;
+  color: #666;
+  border-radius: 8px;
+  border: 1px solid #e0d6cc;
+  font-weight: 600;
+}

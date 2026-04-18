@@ -47,6 +47,13 @@ const USERS = [
   { name: "David", email: "david@example.com" },
 ];
 
+const BOOK_IMAGES = [
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVU3F0ghKN83Mv-wB7GCJWyWA4Ql6JiZ_k5A&s",
+  "https://i1.pickpik.com/photos/940/488/984/book-cover-hardcover-knowledge-preview.jpg",
+  "https://unrulyguides.com/wp-content/uploads/2011/12/generic-cover.jpg",
+  "https://d827xgdhgqbnd.cloudfront.net/wp-content/uploads/2016/04/09121712/book-cover-placeholder.png",
+];
+
 function rand(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
@@ -82,6 +89,7 @@ async function seed() {
     price: randFloat(1, 25),
     condition: rand(CONDITIONS),
     description: `A well-loved copy in ${rand(CONDITIONS).toLowerCase()} condition. A great addition to any collection.`,
+    imageUrl: rand(BOOK_IMAGES),
     available: Math.random() > 0.1,
     sellerId: rand(insertedUserIds).toString(),
     createdAt: new Date(),

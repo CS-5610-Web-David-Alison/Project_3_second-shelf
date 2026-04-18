@@ -21,6 +21,17 @@ import "./BookCard.css";
 export default function BookCard({ book }) {
   return (
     <article className="book-card">
+      {book.imageUrl ? (
+        <img
+          src={book.imageUrl}
+          alt={`Cover of ${book.title}`}
+          className="book-card__image"
+        />
+      ) : (
+        <div className="book-card__image-placeholder" aria-hidden="true">
+          No Image
+        </div>
+      )}
       <div className="book-card__info">
         {/* Title links to the full BookDetails page for this listing */}
         <h2 className="book-card__title">
@@ -55,7 +66,6 @@ BookCard.propTypes = {
     author: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     condition: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string,
   }).isRequired,
 };
-
-

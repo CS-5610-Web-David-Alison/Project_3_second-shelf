@@ -11,9 +11,10 @@
  * @param {string} params.author - The book's author (required)
  * @param {number} params.price - The listing price; must be a non-negative number (required)
  * @param {string} params.condition - Must be one of: 'Like New', 'Good', 'Fair', 'Poor' (required)
+ * @param {string} params.imageUrl - The URL of the book's image (optional)
  * @returns {string|null} An error message if invalid, or null if the data is valid
  */
-export function validateBook({ title, author, price, condition }) {
+export function validateBook({ title, author, price, condition, imageUrl }) {
   if (!title) return "Title is required";
   if (!author) return "Author is required";
   if (price == null || isNaN(price) || price < 0)
@@ -21,6 +22,9 @@ export function validateBook({ title, author, price, condition }) {
   const conditions = ["Like New", "Good", "Fair", "Poor"];
   if (!conditions.includes(condition))
     return `Condition must be one of: ${conditions.join(", ")}`;
+  if (imageUrl && !/^https?:\/\/.+/i.test(imageUrl)) {
+    return "Image URL must be a valid URL";
+  }
   return null;
 }
 

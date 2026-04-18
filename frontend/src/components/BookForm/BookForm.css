@@ -22,6 +22,12 @@
   gap: 0.75rem;
 }
 
+.book-form__fields small {
+  font-size: 0.8rem;
+  color: #444;
+  margin-top: -0.25rem;
+}
+
 /* Field labels — slightly smaller than body text, bold for readability */
 .book-form__fields label {
   font-size: 0.875rem;

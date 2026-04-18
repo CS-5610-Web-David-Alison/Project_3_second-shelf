@@ -5,7 +5,6 @@
 // BookForm as the `initial` prop to pre-populate the fields.
 // On successful submit, redirects to the listing's detail page.
 // Redirects unauthenticated users with a message instead of showing the form.
-
 import { useEffect, useRef, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import PropTypes from "prop-types";

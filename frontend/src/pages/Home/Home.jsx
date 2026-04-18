@@ -122,7 +122,11 @@ function Home({ user }) {
             </button>
           )}
 
-          <button type="button" className="sort-button" onClick={toggleSort}>
+          <button
+            type="button"
+            className={`sort-button ${sortMode === "rating" ? "sort-button--active" : ""}`}
+            onClick={toggleSort}
+          >
             {sortMode === "rating"
               ? "Show in Default Order"
               : "Sort by Highest Average Review Rating"}

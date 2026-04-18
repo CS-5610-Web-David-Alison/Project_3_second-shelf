@@ -54,3 +54,6 @@ button:focus {
   outline: 3px solid #2563eb;
 }
  
+.sort-button--active {
+  background-color: #7a5540;
+}

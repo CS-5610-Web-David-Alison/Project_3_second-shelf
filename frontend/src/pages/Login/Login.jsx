@@ -56,6 +56,7 @@ function Login({ onLogin }) {
           id="email"
           name="email"
           type="email"
+          autoComplete="email"
           aria-describedby="email-error"
           value={formData.email}
           onChange={handleChange}
@@ -68,6 +69,7 @@ function Login({ onLogin }) {
           id="password"
           name="password"
           type="password"
+          autoComplete="current-password"
           value={formData.password}
           onChange={handleChange}
           required

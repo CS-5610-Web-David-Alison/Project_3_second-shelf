@@ -113,9 +113,9 @@ These changes were made to better satisfy the usability rubric, accessibility ex
 ![Register Page](screenshots/register_1.png)
 
 ### Book Pages
-![Sell a book page](screenshots/register.png)
-![Book information page showing reveiw form](screenshots/bookPage.png)
-![My listings page](screenshots/myListings.png)
+![Sell a book page](screenshots/sell_1.png)
+![Book information page showing review form](screenshots/bookPage_1.png)
+![My listings page](screenshots/myListings_1.png)
 
 ---
 ## Usage

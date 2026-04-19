@@ -45,11 +45,11 @@
 
 
 .site-navbar__cta {
-  background-color: #3b2a1f; 
+  background-color: #92400e;; 
   color: #ffffff;           
   font-weight: 700;
   border-radius: 6px;
-  padding: 0.45rem 0.9rem;
+  padding: 0.5rem 1rem;
   text-decoration: none;
   border: none;
 }

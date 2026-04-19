@@ -35,7 +35,7 @@ function ReviewList({ reviews, currentUser, onEdit, onDelete }) {
                   <button type="button" onClick={() => onEdit(review)}>
                     Edit
                   </button>
-                  
+
                   <button
                     type="button"
                     className="delete-button"
@@ -44,14 +44,6 @@ function ReviewList({ reviews, currentUser, onEdit, onDelete }) {
                   >
                     Delete
                   </button>
-                  {/* <button
-                    type="button"
-                    className="delete-button"
-                    aria-label="Delete review"
-                    onClick={() => onDelete(review)}
-                  >
-                    Delete
-                  </button> */}
                 </div>
               ) : null}
             </li>

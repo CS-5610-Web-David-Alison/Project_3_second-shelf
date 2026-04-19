@@ -143,44 +143,6 @@ function Header({ user, onLogout }) {
           </div>
         </nav>
       </header>
-      {/* {showLogoutModal && (
-        <div
-          className="modal-overlay"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="logout-title"
-        >
-          <div 
-          className="logout-modal" 
-          tabIndex="-1" 
-          ref={modalRef}
-          >
-            <h2 id="logout-title">Confirm Logout</h2>
-            <p>Are you sure you want to log out?</p>
-
-            <div className="logout-modal__actions">
-              <button
-                type="button"
-                className="logout-modal__button logout-modal__button--confirm"
-                onClick={() => {
-                  setShowLogoutModal(false);
-                  onLogout();
-                }}
-              >
-                Yes
-              </button>
-
-              <button
-                type="button"
-                className="logout-modal__button logout-modal__button--cancel"
-                onClick={() => setShowLogoutModal(false)}
-              >
-                No
-              </button>
-            </div>
-          </div>
-        </div>
-      )} */}
       <Modal
         isOpen={showLogoutModal}
         title="Confirm Logout"

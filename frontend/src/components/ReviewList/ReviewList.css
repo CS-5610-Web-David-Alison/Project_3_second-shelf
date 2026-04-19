@@ -26,16 +26,18 @@
 
 .review-user {
   font-weight: 600;
+  color: #222;
 }
 
 .review-rating {
-  color: #f59e0b;
+  color: #8a5a00;
+  font-weight: 700;
 }
 
 .review-text {
   margin: 0.75rem 0;
   line-height: 1.6;
-  color: #444;
+  color: #333;
 }
 
 .review-actions {
@@ -57,12 +59,10 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #5a3e2b; 
+  background-color: #5a3e2b;
   color: white;
 }
 
 .review-actions button:hover {
   background-color: #7a5540;
 }
-
-

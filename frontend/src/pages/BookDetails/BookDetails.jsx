@@ -195,7 +195,7 @@ export default function BookDetails({ user }) {
     : null;
 
   return (
-    <div className="bookdetails">
+    <main className="bookdetails">
       <Link to="/" className="bookdetails__back">
         ← Back to listings
       </Link>
@@ -376,7 +376,7 @@ export default function BookDetails({ user }) {
       >
         <p>You need to log in before you can leave a review.</p>
       </Modal>
-    </div>
+    </main>
   );
 }
 

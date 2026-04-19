@@ -103,14 +103,14 @@
 
 /* Average rating badge — gold star and score from reviews */
 .bookdetails__rating {
-  color: #e6a817;
-  font-weight: 600;
+  color: #8a5a00;
+  font-weight: 700;
   font-size: 0.95rem;
 }
 
 /* Seller description — readable line height for longer text */
 .bookdetails__description {
-  color: #444;
+  color: #333;
   font-size: 0.95rem;
   line-height: 1.7;
   margin-top: 0.5rem;

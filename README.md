@@ -53,6 +53,24 @@ The primary goals of this system are:
 
 Each module is fully independent — the app continues to function if either module is disabled. Together they demonstrate a complete full stack application using Node.js, Express, React with Hooks, and MongoDB.
 
+
+## Usability Study Improvements
+
+This version of the project includes changes made in response to usability testing evaluation. Key issues identified during testing included action discoverability, sorting confusion, lack of feedback after actions, weak visual guidance, and limited visual design. The following changes were implemented to address those findings:
+
+- Added stronger “Sell a Book” calls to action
+- Added search and clearer sorting language for books
+- Added inline feedback and success/error messages
+- Added confirmation modals for destructive actions such as logout and delete
+- Added login required modals for protected flows
+- Improved focus management and keyboard accessibility
+- Added book images to strengthen visual design and scanning
+- Improved empty states for My Listings and other flows
+
+These changes were made to better satisfy the usability rubric, accessibility expectations, and design principles.
+
+---
+
 ---
 
 ## Tech Stack
@@ -67,32 +85,58 @@ Each module is fully independent — the app continues to function if either mod
 
 ---
 
+## Core Features
+
+- User registration and login
+- Session based authentication
+- Browse all book listings
+- Search books by title or author
+- Sort books by highest average review rating
+- Add, edit, and delete book listings
+- View personal listings in My Listings
+- Create, edit, and delete reviews
+- Review based rating display
+- Book image support
+- Confirmation and login-required modals
+- Accessible keyboard navigation and focus handling
+
+---
+
 ## Screenshots
 
 ### Home Pages
-![Home page](screenshots/home.png)
-![User home page](screenshots/loggedInHome.png)
+![Home page](screenshots/home_1.png)
+![User home page](screenshots/loggedInHome_1.png)
 
 ### Login and Register Pages
-![Login Page](screenshots/login.png)
-![Register Page](screenshots/register.png)
+![Login Page](screenshots/login_1.png)
+![Register Page](screenshots/register_1.png)
 
 ### Book Pages
-![Sell a book page](screenshots/register.png)
-![Book information page showing reveiw form](screenshots/bookPage.png)
-![My listings page](screenshots/myListings.png)
+![Sell a book page](screenshots/sell_1.png)
+![Book information page showing review form](screenshots/bookPage_1.png)
+![My listings page](screenshots/myListings_1.png)
+
+### Lighthouse Test
+
+
 
 ---
 ## Usage
 
 | Action | How |
 |--------|-----|
-| Browse books | Visit the home page — all listings are shown in a grid |
-| View a listing | Click any book card to see full details and reviews |
-| Log in | Click "Log In" in the header and enter your credentials |
-| Sell a book | Log in, then click "Sell a Book" in the header |
-| Edit / delete a listing | Log in as the seller and visit the listing's detail page |
-| Leave a review | Log in and scroll to the reviews section on any listing page |
+| Browse books | Visit the home page to view listings |
+| Search books | Use the search bar to search by title or author |
+| Sort books | Use the sort control to view books by highest average review rating |
+| View a listing | Click any book card to open the detail page |
+| Log in | Click **Login** in the header and enter your credentials |
+| Register | Click **Register** in the header and create an account |
+| Sell a book | Log in, then click **Sell a Book** |
+| Edit or delete a listing | Open one of your listings and use the listing controls |
+| View your listings | Visit **My Listings** after logging in |
+| Leave a review | Log in and use the review form on a book detail page |
+
 ---
 
 ## Instructions to Build
@@ -116,7 +160,9 @@ git -v
 
 ```bash
 git clone https://github.com/CS-5610-Web-David-Alison/Project_3_second-shelf
-cd second-shelf
+cd Project_3_second-shelf
+git checkout David_Ahn_Project_4_Usability_Update
+
 ```
 
 ---
@@ -217,6 +263,19 @@ second-shelf/
 ```
 
 ---
+
+## Accessibility and Design Notes
+
+This project includes improvements based on class notes and rubric expectations:
+
+- semantic heading structure
+- keyboard-accessible forms and controls
+- focus management for pages and modals
+- ARIA live regions for feedback messages
+- clearer spacing, alignment, and hierarchy
+- consistent visual design system
+- improved typography and imagery for usability
+
 
 ## License
 

@@ -105,19 +105,35 @@ These changes were made to better satisfy the usability rubric, accessibility ex
 ## Screenshots
 
 ### Home Pages
-![Home page](screenshots/home_1.png)
-![User home page](screenshots/loggedInHome_1.png)
+![Home page](screenshots/home_2.png)
+![User home page](screenshots/loggedInHome_2.png)
 
 ### Login and Register Pages
-![Login Page](screenshots/login_1.png)
-![Register Page](screenshots/register_1.png)
+![Login Page](screenshots/login_2.png)
+![Register Page](screenshots/register_2.png)
 
 ### Book Pages
+![Sell a book page](screenshots/sell_2.png)
+![Book information page showing review form](screenshots/bookPage_1.png)
+![My listings page](screenshots/myListings_1.png)
+
+
+### Lighthouse Test Verification
+
+#### Home Pages
+![Home page](screenshots/lighthouse_home_2.png)
+![User home page](screenshots/lighthouse_loggedInHome_2.png)
+
+#### Login and Register Pages
+![Login Page](screenshots/lighthouse_login_2.png)
+![Register Page](screenshots/lighthouse_register_2.png)
+
+#### Book Pages
 ![Sell a book page](screenshots/sell_1.png)
 ![Book information page showing review form](screenshots/bookPage_1.png)
 ![My listings page](screenshots/myListings_1.png)
 
-### Lighthouse Test
+
 
 
 

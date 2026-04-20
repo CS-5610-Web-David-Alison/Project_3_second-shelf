@@ -117,7 +117,7 @@ export default function AddBook({ user }) {
   if (loading) return <p className="addbook__status">Loading...</p>;
 
   return (
-    <div className="addbook">
+    <main className="addbook">
       {/* Page heading changes based on whether we are creating or editing */}
       <h1 className="addbook__heading" tabIndex="-1" ref={headingRef}>
         {isEditing ? "Edit Listing" : "Sell a Book"}
@@ -144,7 +144,7 @@ export default function AddBook({ user }) {
         submitLabel={isEditing ? "Save Changes" : "List Book"}
         isSubmitting={isSubmitting}
       />
-    </div>
+    </main>
   );
 }
 

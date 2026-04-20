@@ -45,8 +45,8 @@ Based on usability testing with multiple participants and applying established d
 
 ---
 
-### 2. Focus Management (React-Specific)
-- Focus is  managed using `useEffect` and `useRef`.
+### 2. Focus Management
+- Focus is managed using `useEffect` and `useRef`.
 - After navigation or modal opening, focus is directed to the most relevant element such as page heading or modal container.
 - Focus returns to the triggering element when modals are closed.
 
@@ -60,10 +60,10 @@ Based on usability testing with multiple participants and applying established d
 ---
 
 ### 4. Color Contrast and Accessibility (WCAG Compliance)
-- Updated color palette to meet WCAG 2.0 contrast requirements.
-- Ensured all text elements meet a minimum contrast ratio of **4.5:1**.
+- Updated color palette.
+- Ensured all text elements meet a minimum contrast ratio.
 - Improved readability for Navigation buttons, Ratings, and  Review text
-- Verified using **Lighthouse** and **Axe DevTools**.
+- Verified using **Lighthouse** or **Axe DevTools**.
 
 ---
 

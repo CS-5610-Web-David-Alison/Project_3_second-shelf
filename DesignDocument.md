@@ -31,6 +31,86 @@ The application is built using:
 
 ---
 
+## Usability Improvements (Project 4 Update)
+
+Based on usability testing with multiple participants and applying established design principles such as visual hierarchy, consistency, accessibility, and feedback, key improvements were implemented to enhance user experience.
+
+### 1. Keyboard Accessibility (REQUIRED)
+- All interactive elements such as buttons, links, forms are accessible through keyboard navigation.
+- Users can navigate through the application with the **Tab key**.
+- Visible focus indicators were added to improve usability for keyboard users.
+- Modals support keyboard interactions:
+  - `Escape` closes modals
+  - Focus is moved into the modal when opened
+
+---
+
+### 2. Focus Management (React-Specific)
+- Focus is  managed using `useEffect` and `useRef`.
+- After navigation or modal opening, focus is directed to the most relevant element such as page heading or modal container.
+- Focus returns to the triggering element when modals are closed.
+
+---
+
+### 3. Visual Hierarchy and Layout Improvements
+- Improved spacing and alignment across all pages using consistent margins and layout structure.
+- Clear separation between sections using headings and grouping.
+- Consistent use of typography and color to emphasize important elements such as Book titles, Prices, and Call to action buttons
+
+---
+
+### 4. Color Contrast and Accessibility (WCAG Compliance)
+- Updated color palette to meet WCAG 2.0 contrast requirements.
+- Ensured all text elements meet a minimum contrast ratio of **4.5:1**.
+- Improved readability for Navigation buttons, Ratings, and  Review text
+- Verified using **Lighthouse** and **Axe DevTools**.
+
+---
+
+### 5. Semantic HTML and Accessibility Enhancements
+- Added proper semantic landmarks
+- Structured heading hierarchy (`h1 → h2 → h3`)
+- Removed incorrect heading usage in non-content areas 
+- Added `aria` attributes for modals and interactive components.
+
+---
+
+### 6. User Feedback Improvements
+- Added clear feedback messages for user actions:
+  - Review creation, editing, and deletion
+  - Book creation and updates
+- Error messages are displayed when actions fail.
+- Success messages confirm completed actions.
+
+---
+
+### 7. Modal-Based User Flows
+- Implemented accessible modal dialogs for Logout confirmation and Login prompts when accessing restricted pages.
+- Modals improve clarity and prevent accidental actions.
+
+---
+
+### 8. Improved Discoverability
+- Added clear call to action buttons such as “Sell a Book” and “Log in to continue”
+- Improved navigation clarity and reduced confusion for users.
+
+---
+
+### 9. Sorting UX Improvements
+- Clarified sorting functionality:
+  - Updated button label to **“Sort by Highest Rating”**
+  - Toggle switches between default and sorted views
+- Reduced confusion observed during usability testing.
+
+---
+
+### 10. Visual Design Enhancements (Images)
+- Added book images to listings to improve visual engagement.
+- Improves scanning and recognition of content.
+- Enhances overall aesthetic and usability.
+
+---
+
 ## System Goals
 
 The primary goals of this system are:
@@ -42,6 +122,7 @@ The primary goals of this system are:
 - Ensure each module degrades gracefully if the other is unavailable.
 
 ---
+
 
 ## User Personas
 
@@ -175,6 +256,8 @@ The application follows a clear 3-Tier Architecture:
 - Fetch API for all backend communication (no axios)
 - Each component in its own file with a matching CSS file
 - React Router for client-side page navigation
+- Accessibility enhancements including focus management and keyboard navigation
+- Global styling improvements to maintain visual consistency and contrast compliance
 
 **Server Layer**
 - Node.js runtime with Express
@@ -215,6 +298,8 @@ The interface is divided into the following views:
 - Hero section with page heading and real-time search bar
 - Responsive grid of BookCard components
 - Each card shows title, author, condition badge, price, and a link to the detail page
+- Sorting toggle with clear labeling (“Sort by Highest Rating”)
+- Improved visual hierarchy and spacing for better readability
 
 **Book Detail Page (`/books/:id`)**
 - Full listing information: title, author, price, condition badge, average rating, description
@@ -222,6 +307,8 @@ The interface is divided into the following views:
 - Community reviews list with star ratings and written feedback
 - Review submission form visible only to logged-in users
 - Degrades gracefully if the Reviews module is unavailable
+- Accessible review interactions with inline feedback messages
+- Improved rating visibility with accessible contrast-compliant styling
 
 **Add / Edit Listing Page (`/add`, `/edit/:id`)**
 - Single reusable form component handles both create and edit modes
@@ -231,7 +318,9 @@ The interface is divided into the following views:
 **Header (all pages)**
 - Site logo linking to the home page
 - Navigation links: Browse, Sell a Book (when logged in)
-- Login/logout controls with a modal login form
+- Login/logout controls with accessible modal dialogs
+- Logout includes a confirmation modal to prevent accidental actions
+- Login prompts are shown via modal when accessing restricted pages
 
 ---
 

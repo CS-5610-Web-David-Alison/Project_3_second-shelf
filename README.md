@@ -67,7 +67,7 @@ This version of the project includes changes made in response to usability testi
 - Added book images to strengthen visual design and scanning
 - Improved empty states for My Listings and other flows
 
-These changes were made to better satisfy the usability rubric, accessibility expectations, and design principles.
+These changes were made to satisfy the usability rubric, accessibility expectations, and design principles.
 
 ---
 
@@ -114,8 +114,8 @@ These changes were made to better satisfy the usability rubric, accessibility ex
 
 ### Book Pages
 ![Sell a book page](screenshots/sell_2.png)
-![Book information page showing review form](screenshots/bookPage_1.png)
-![My listings page](screenshots/myListings_1.png)
+![Book information page showing review form](screenshots/bookPage_2.png)
+![My listings page](screenshots/myListings_2.png)
 
 
 ### Lighthouse Test Verification
@@ -129,9 +129,9 @@ These changes were made to better satisfy the usability rubric, accessibility ex
 ![Register Page](screenshots/lighthouse_register_2.png)
 
 #### Book Pages
-![Sell a book page](screenshots/sell_1.png)
-![Book information page showing review form](screenshots/bookPage_1.png)
-![My listings page](screenshots/myListings_1.png)
+![Sell a book page](screenshots/lighthouse_sell_2.png)
+![Book information page showing review form](screenshots/lighthouse_bookPage_2.png)
+![My listings page](screenshots/lighthouse_myListings_2.png)
 
 
 

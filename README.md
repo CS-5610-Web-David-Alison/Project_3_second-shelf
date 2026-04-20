@@ -23,11 +23,20 @@ Public Deployment:
 GitHub Repository:
 [https://github.com/CS-5610-Web-David-Alison/Project_3_second-shelf/tree/David_Ahn_Project_4_Usability_Update]
 
-Application Walkthrough:
+Application Walkthrough Project 3:
 [https://youtu.be/3CvYk5Oe7SY]
 
-Google Slides Presentation:
+Application Walkthrough Project 4:
+[https://youtu.be/K55asq2Yy3A]
+
+Google Slide Video
+[https://youtu.be/S99BodOcnm4]
+
+Google Slides Presentation Project 3:
 [https://docs.google.com/presentation/d/1QRzHVsBQ5N1guxiJ5P5ptqNMpx_RePCZPZXjvOEQnpo/edit?usp=sharing]
+
+Google Slides Presentation Project 4:
+[https://docs.google.com/presentation/d/1ggoxt9Y9AS5tZpQa24gGMDQonCWcNWV-cvp7nFphTn4/edit?usp=sharing]
 
 
 # Project Objective
